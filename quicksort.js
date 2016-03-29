@@ -3,8 +3,8 @@ module.exports = function () {
     this.quickSort = function (array, p, r) {
         if (p < r) {
             var pivot = this.partition(array, p, r);
-            quickSort(array, p, pivot - 1);
-            quickSort(array, pivot + 1, r);
+            this.quickSort(array, p, pivot - 1);
+            this.quickSort(array, pivot + 1, r);
         }
     };
 
