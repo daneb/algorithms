@@ -1,32 +1,48 @@
-class BinarySearchTree
+# Kudos to Phil McClure (rubyalgorithms.com)
 
-  attr_reader :root
+module Trees
+  class BinarySearchTree
+    attr_reader :root
 
-  class Node
-    attr_reader :data, :left, :right
+    class Node
+      attr_reader :parent, :left, :right
 
-    def initialize(data)
-      @data = data
-      @left = nil
-      @right = nil
-    end  
-  end
+      def initialize(value)
+        @parent = value
+        @left = nil
+        @right = nil
+      end
 
-  def insert(data)
-    if @root.nil?
-      @root = Node.new(data)
-    else
-      #@root.insert()
+      def insert(value)
+        if value <= @parent
+          @left.nil? ? @left = Node.new(value) : @left.insert(value)
+        elsif value > @parent
+          @right.nil? ? @right = Node.new(value) : @right.insert(value)
+        end
+      end
+    end
+
+    def insert(value)
+      if @root.nil?
+        @root = Node.new(value)
+      else
+        @root.insert(value)
+      end
+    end
+
+    def search(value, node=@root)
+      return nil if node.nil?
+      if value < node.parent
+        search(value, node.left)
+      elsif value > node.parent
+        search(value, node.right)
+      else
+        return node
+      end
+    end
+
+    def initialize
+      @root = nil
     end
   end
-
-  def initialize()
-    @root = nil
-  end
 end
-# ==> nil
-
-bst = BinarySearchTree.new
-# ==> #<BinarySearchTree:0x007fe0830024c0 @root=nil>
-bst.insert(15)
-# ==> nil
