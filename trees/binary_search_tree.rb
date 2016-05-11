@@ -41,6 +41,13 @@ module Trees
       end
     end
 
+    def preorder(node, result = [])
+      result << node.parent
+      preorder(node.left, result) if node.left != nil
+      preorder(node.right, result) if node.right != nil
+      result
+    end
+
     def initialize
       @root = nil
     end
