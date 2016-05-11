@@ -29,14 +29,44 @@ module Trees
       result << @root.value # start at root and add it's value
       result << preorder_subtree(node.root.left) # traverse left sub-tree
       result << preorder_subtree(node.root.right) # traverse right sub-tree
-      result.flatten 
+      result.flatten
     end
 
-    private 
+    def inorder(node)
+      result = []
+      result << inorder_subtree(node.root.left) # traverse left sub-tree
+      result << @root.value # start at root and add it's value
+      result << inorder_subtree(node.root.right) # traverse right sub-treeresult.flatten
+      result.flatten
+    end
+
+    def postorder(node)
+      result = []
+      result << postorder_subtree(node.root.left) # traverse left sub-tree
+      result << postorder_subtree(node.root.right) # traverse right sub-treeresult.flatten
+      result << @root.value # start at root and add it's value
+      result.flatten
+    end
+
+    private
     def preorder_subtree(node, result = [])
       result << node.value
       preorder_subtree(node.left, result) if node.left != nil
       preorder_subtree(node.right, result) if node.right != nil
+      result
+    end
+
+    def inorder_subtree(node, result = [])
+      inorder_subtree(node.left, result) if node.left != nil
+      result << node.value
+      inorder_subtree(node.right, result) if node.right != nil
+      result
+    end
+
+    def postorder_subtree(node, result = [])
+      postorder_subtree(node.left, result) if node.left != nil
+      postorder_subtree(node.right, result) if node.right != nil
+      result << node.value
       result
     end
   end

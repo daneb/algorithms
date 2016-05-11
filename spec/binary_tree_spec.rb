@@ -23,5 +23,14 @@ describe Trees::BinaryTree do
     it 'should return values in preorder' do
       expect(@bst.preorder(@bst)).to eq ['d', 'b', 'm', 'k', 'p', 't', 'c', 'a', 'g', 'f', 'h']
     end
+
+    it 'should return values in inorder' do
+      expect(@bst.inorder(@bst)).to eq ['m', 'b', 'p', 'k', 't', 'd', 'a', 'g', 'c', 'f', 'h']
+    end
+
+    it 'should return values in postorder' do
+      expect(@bst.postorder(@bst)).to eq ['m', 'p', 't', 'k', 'b', 'g', 'a', 'h', 'f', 'c', 'd']
+    end
+
   end
 end
