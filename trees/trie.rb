@@ -32,5 +32,31 @@ module Trees
         trienode.is_leaf = true if (index == (word.length - 1))
       end
     end
+
+    def search(word)
+      trienode = search_node(word)
+      return true if (not trienode.nil? and trienode.is_leaf)
+      false
+    end
+
+    def starts_with(prefix)
+      return false if search_node(prefix).nil?
+      true
+    end
+
+    private
+    def search_node(string)
+      children = @root.children
+      trienode = TrieNode.new
+      string.split('').each_with_index do |char, index|
+        if children.has_key?(char)
+          trienode = children[char] 
+          children = trienode.children 
+        else
+          return nil
+        end
+      end
+      trienode
+    end
   end
 end

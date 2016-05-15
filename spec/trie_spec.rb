@@ -81,4 +81,25 @@ describe Trees::Trie do
       expect(@trie.root.children['a'].children['c'].children['t'].children['o'].children.keys[0]).to eq 'r'
     end
   end
+
+  context 'search' do
+    before :each do
+      @trie.insert('ace') # initial prefix
+      @trie.insert('acer')
+      @trie.insert('aces')
+      @trie.insert('actor')
+    end
+
+    it 'should determine if a word exists in the trie' do
+      expect(@trie.search('aces')).to eq true
+    end
+
+    it 'should return false if the word does not exist in the trie' do
+      expect(@trie.search('ant')).to eq false
+    end
+
+    it 'should determine if there is any word in the trie that starts with the given prefix' do
+      expect(@trie.starts_with('act')).to eq true
+    end
+  end
 end
