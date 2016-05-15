@@ -50,8 +50,8 @@ module Trees
       trienode = TrieNode.new
       string.split('').each_with_index do |char, index|
         if children.has_key?(char)
-          trienode = children[char] 
-          children = trienode.children 
+          trienode = children[char]
+          children = trienode.children
         else
           return nil
         end
