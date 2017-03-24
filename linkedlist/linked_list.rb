@@ -13,4 +13,19 @@ class Node
     @next_node = next_node
   end
 end
+# ==> :initialize
+
+a = Node.new(100, nil)
+# ==> #<Node:0x007fbf95934688 @value=100, @next_node=nil>
+t = Node.new(5, a)
+# ==> #<Node:0x007fbf96084118 @value=5, @next_node=#<Node:0x007fbf95934688 @value=100, @next_node=nil>>
+x = Node.new(6, a)
+# ==> #<Node:0x007fbf96076310 @value=6, @next_node=#<Node:0x007fbf95934688 @value=100, @next_node=nil>>
+a.next_node = t
+# ==> #<Node:0x007fbf96084118 @value=5, @next_node=#<Node:0x007fbf95934688 @value=100, @next_node=#<Node:0x007fbf96084118 ...>>>
+
+x.value
+# ==> 6
+x.next_node.value
+# ==> 100
 
